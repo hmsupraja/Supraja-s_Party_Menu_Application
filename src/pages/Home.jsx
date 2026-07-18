@@ -25,9 +25,9 @@ function Home() {
       <Header />
 
       <SearchBar
-        search={search}
-        setSearch={setSearch}
-      />
+  value={search}
+  onSearch={setSearch}
+/>
 
       <FilterButtons
         category={category}

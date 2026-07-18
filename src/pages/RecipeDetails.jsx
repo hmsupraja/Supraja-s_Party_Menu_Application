@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+
+import { Link, useParams } from "react-router-dom";
 import recipes from "../data/recipes";
 
 function RecipeDetails() {
@@ -35,6 +36,9 @@ function RecipeDetails() {
       </ul>
 
       <h4>{recipe.servings}</h4>
+      <Link to="/">
+  <button>← Back to Home</button>
+</Link>
     </div>
   );
 }
