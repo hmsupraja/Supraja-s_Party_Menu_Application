@@ -10,11 +10,11 @@ import RecipeDetails from "./pages/RecipeDetails";
 import Login from "./pages/Login";
 
 function ProtectedRoute({ children }) {
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const token = localStorage.getItem("party_menu_token");
 
-  if (!isLoggedIn) {
-    return <Navigate to="/login" replace />;
-  }
+if (!token) {
+  return <Navigate to="/login" replace />;
+}
 
   return children;
 }

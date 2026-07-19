@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 function Header(){
   const navigate=useNavigate();
   const handleLogout=()=>{
-    localStorage.removeItem('isLoggedIn')
+    localStorage.removeItem("party_menu_token");
+localStorage.removeItem("party_menu_user");
+localStorage.removeItem("party_menu_saved_recipes");
     navigate('/login');
 
   };

@@ -5,19 +5,46 @@ function Login(){
     const [password,setPassword]=useState("");
     const [error,setError]=useState("");
     const navigate=useNavigate();
-    const handleSubmit=(e)=>{
-        e.preventDefault();
-        if(
-            email==='admin@example.com' &&
-            password==='admin123'
+    const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
 
-        ){
-            localStorage.setItem('isLoggedIn','true');
-            navigate('/');
-        }else{
-            setError('Invalid Email or Password');
-        }
-    };
+  try {
+    const response = await fetch(
+      "https://serverless-api-teal.vercel.app/api/auth/signin",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (data.success) {
+      localStorage.setItem(
+        "party_menu_token",
+        data.data.token
+      );
+
+      localStorage.setItem(
+        "party_menu_user",
+        JSON.stringify(data.data.user)
+      );
+
+      navigate("/");
+    } else {
+      setError(data.message);
+    }
+  } catch (error) {
+    setError("Something went wrong. Please try again.");
+  }
+};
     return (
         <div className="login-container">
             <h1>Party Menu Login</h1>
