@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import RecipeCard from "../components/RecipeCard";
+import "../styles/SavedRecipes.css";
 
 function SavedRecipes() {
   const [savedRecipes, setSavedRecipes] = useState([]);
@@ -29,37 +30,52 @@ function SavedRecipes() {
 
   return (
     <div className="saved-page">
-      <h1>Saved Recipes</h1>
 
-      <p>{savedRecipes.length} recipe(s) saved</p>
+      <div className="saved-header">
+        <div>
+          <h1>Saved Recipes</h1>
+          <p>{savedRecipes.length} recipe(s) saved</p>
+        </div>
 
-      <Link to="/">
-        <button>← Back to Menu</button>
-      </Link>
+        <Link to="/">
+          <button className="back-btn">
+            ← Back to Menu
+          </button>
+        </Link>
+      </div>
 
       {savedRecipes.length === 0 ? (
-        <div>
-  <h2>No saved recipes yet</h2>
+        <div className="empty-state">
+          <h2>No saved recipes yet</h2>
 
-  <Link to="/">
-    <button>Browse Menu</button>
-  </Link>
-</div>
+          <p>Save your favorite recipes to find them here.</p>
+
+          <Link to="/">
+            <button className="browse-btn">
+              Browse Menu
+            </button>
+          </Link>
+        </div>
       ) : (
         <div className="recipes-grid">
           {savedRecipes.map((recipe) => (
-            <div key={recipe.id}>
+            <div
+              className="saved-card"
+              key={recipe.id}
+            >
               <RecipeCard recipe={recipe} />
 
               <button
+                className="remove-btn"
                 onClick={() => removeRecipe(recipe.id)}
               >
-                Remove
+                Remove Recipe
               </button>
             </div>
           ))}
         </div>
       )}
+
     </div>
   );
 }

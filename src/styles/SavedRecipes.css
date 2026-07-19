@@ -1,0 +1,82 @@
+.saved-page {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.saved-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.saved-header h1 {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.saved-header p {
+  color: #666;
+}
+
+.recipes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.saved-card {
+  width: 320px;
+}
+
+.saved-card .recipe-card {
+  width: 100%;
+}
+
+.remove-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #dc2626;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s;
+}
+
+.remove-btn:hover {
+  background: #b91c1c;
+}
+
+.back-btn,
+.browse-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.back-btn:hover,
+.browse-btn:hover {
+  background: #1d4ed8;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.empty-state h2 {
+  margin-bottom: 15px;
+}
+
+.empty-state p {
+  color: #666;
+  margin-bottom: 20px;
+}
