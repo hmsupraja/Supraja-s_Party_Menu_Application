@@ -8,6 +8,8 @@ import {
 import Home from "./pages/Home";
 import RecipeDetails from "./pages/RecipeDetails";
 import Login from "./pages/Login";
+import SavedRecipes from "./pages/SavedRecipes";
+
 
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem("party_menu_token");
@@ -42,7 +44,18 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/saved-recipes"
+          element={
+            <ProtectedRoute>
+              <SavedRecipes />
+            </ProtectedRoute>
+          }
+        />
+      
       </Routes>
+
+      
     </BrowserRouter>
   );
 }
