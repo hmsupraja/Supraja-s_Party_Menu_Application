@@ -4,8 +4,7 @@ A responsive React-based Party Menu Application that allows users to browse, sea
 
 ## Live Demo
 
-**Live URL:** https://your-vercel-link.vercel.app
-
+**Live URL:** (https://supraja-s-party-menu-application-bpm9xo7zz-hmsupraja.vercel.app/)
 ## GitHub Repository
 
 **Repository:** https://github.com/hmsupraja/Supraja-s_Party_Menu_Application
