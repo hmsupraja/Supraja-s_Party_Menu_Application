@@ -1,12 +1,41 @@
+import { useState, useEffect } from "react";
+import "../styles/SearchBar.css";
+
 function SearchBar({ value, onSearch }) {
+  const [searchText, setSearchText] = useState(value);
+
+  useEffect(() => {
+    setSearchText(value);
+  }, [value]);
+
+  const handleSearch = () => {
+    onSearch(searchText.trim());
+  };
+
   return (
-    <div className="search-box">
+    <div className="search-container">
+
       <input
         type="text"
         placeholder="Search recipes..."
-        value={value}
-        onChange={(e) => onSearch(e.target.value)}
+        value={searchText}
+        onChange={(e) =>
+          setSearchText(e.target.value)
+        }
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSearch();
+          }
+        }}
       />
+
+      <button
+        className="search-btn"
+        onClick={handleSearch}
+      >
+        Search
+      </button>
+
     </div>
   );
 }

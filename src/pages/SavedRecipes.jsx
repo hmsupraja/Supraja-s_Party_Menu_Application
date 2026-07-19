@@ -57,7 +57,7 @@ function SavedRecipes() {
           </Link>
         </div>
       ) : (
-        <div className="recipes-grid">
+        <div className="saved-recipes-grid">
           {savedRecipes.map((recipe) => (
             <div
               className="saved-card"

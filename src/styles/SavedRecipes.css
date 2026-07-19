@@ -20,7 +20,7 @@
   color: #666;
 }
 
-.recipes-grid {
+.saved-recipes-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;

@@ -25,10 +25,17 @@ function Header() {
     <header className="header">
       <div className="header-content">
 
-        <div>
-          <h1>Party Menu</h1>
-          <p>Welcome, {user?.name}</p>
-        </div>
+        
+         <div className="header-left">
+  <h1 className="header-title">
+    Party Menu
+  </h1>
+
+  <p className="welcome-text">
+    Welcome, {user?.name}
+  </p>
+</div>
+        
 
         <div className="header-actions">
 
@@ -42,7 +49,7 @@ function Header() {
             className="logout-btn"
             onClick={handleLogout}
           >
-            Logout
+            Logout →
           </button>
 
         </div>

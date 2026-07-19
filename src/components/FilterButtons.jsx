@@ -1,3 +1,5 @@
+import "../styles/FilterButtons.css";
+
 function FilterButtons({ category, setCategory }) {
   const categories = [
     "all",

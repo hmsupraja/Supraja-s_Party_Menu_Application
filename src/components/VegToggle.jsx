@@ -1,3 +1,4 @@
+import "../styles/VegToggle.css";
 function VegToggle({diet,setDiet})
 {
   return(
