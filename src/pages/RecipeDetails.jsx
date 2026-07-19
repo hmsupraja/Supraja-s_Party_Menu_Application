@@ -3,6 +3,10 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import recipes from "../data/recipes";
 
+
+import "../styles/Details.css";
+
+
 function RecipeDetails() {
   const { id } = useParams();
   const [saved, setSaved] = useState(false);
@@ -49,40 +53,63 @@ function RecipeDetails() {
 };
 
   return (
-    <div>
-      <img
-        src={recipe.image}
-        alt={recipe.name}
-        width="400"
-      />
+  <div className="details-container">
+    <img
+      src={recipe.image}
+      alt={recipe.name}
+      className="details-image"
+    />
+
+    <div className="details-content">
+      <div className="badges">
+        <span className="badge category-badge">
+          {recipe.category.toUpperCase()}
+        </span>
+
+        <span
+          className={`badge ${
+            recipe.isVeg ? "veg-badge" : "nonveg-badge"
+          }`}
+        >
+          {recipe.isVeg ? "Veg" : "Non-Veg"}
+        </span>
+      </div>
 
       <h1>{recipe.name}</h1>
 
       <p>{recipe.fullDescription}</p>
 
-      <h3>Ingredients</h3>
+      <h3>{recipe.servings}</h3>
 
-      <ul>
-        {recipe.ingredients.map((item, index) => (
-          <li key={index}>
-            {item.name} - {item.quantity}
-          </li>
-        ))}
-      </ul>
+      <div className="ingredients">
+        <h3>Ingredients</h3>
 
-      <h4>{recipe.servings}</h4>
-      <button onClick={handleSaveRecipe}>
-  {saved ? "Saved ❤️" : "Save Recipe"}
-</button>
+        <ul>
+          {recipe.ingredients.map((item, index) => (
+            <li key={index}>
+  <strong>{item.name}</strong> — {item.quantity}
+</li>
+          ))}
+        </ul>
+      </div>
 
-<br />
-<br />
+      <div className="details-buttons">
+        <button
+          className="save-btn"
+          onClick={handleSaveRecipe}
+        >
+          {saved ? "Saved ❤️" : "Save Recipe"}
+        </button>
 
-<Link to="/">
-  <button>← Back to Home</button>
-</Link>
+        <Link to="/">
+          <button className="back-btn">
+            ← Back to Menu
+          </button>
+        </Link>
+      </div>
     </div>
-  );
+  </div>
+);
 }
 
 export default RecipeDetails;

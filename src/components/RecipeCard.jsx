@@ -4,21 +4,34 @@ import "../styles/Card.css";
 function RecipeCard({ recipe }) {
   return (
     <div className="recipe-card">
-      <img src={recipe.image} alt={recipe.name} />
+
+      <img
+        src={recipe.image}
+        alt={recipe.name}
+      />
 
       <div className="card-body">
+
+        <small>{recipe.category.toUpperCase()}</small>
+
         <h3>{recipe.name}</h3>
 
         <p>{recipe.description}</p>
 
+        <p>
+          <strong>{recipe.servings}</strong>
+        </p>
+
         <span className={recipe.isVeg ? "veg" : "nonveg"}>
-          {recipe.isVeg ? "Veg" : "Non Veg"}
+          {recipe.isVeg ? "Veg" : "Non-Veg"}
         </span>
 
         <Link to={`/recipe/${recipe.id}`}>
           <button>View Recipe</button>
         </Link>
+
       </div>
+
     </div>
   );
 }

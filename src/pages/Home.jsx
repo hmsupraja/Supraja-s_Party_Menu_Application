@@ -5,6 +5,10 @@ import SearchBar from "../components/SearchBar";
 import FilterButtons from "../components/FilterButtons";
 import RecipeCard from "../components/RecipeCard";
 import VegToggle from "../components/VegToggle";
+
+import "../styles/Home.css";
+
+
 function Home() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
@@ -30,7 +34,7 @@ const [diet, setDiet] = useState("all");
 });
 
   return (
-    <>
+    <div className="home-container">
       <Header />
 
       <SearchBar
@@ -48,10 +52,15 @@ const [diet, setDiet] = useState("all");
   setDiet={setDiet}
 />
 
-<p>{filteredRecipes.length} items found</p>
+<p className="items-count">
+    {filteredRecipes.length} items found
+</p>
 
       {filteredRecipes.length === 0 ? (
-  <h2>No dishes found. Try different filters.</h2>
+  <div className="empty-state">
+    <h2>No dishes found</h2>
+    <p>Try different filters.</p>
+</div>
 ) : (
   <div className="recipes-grid">
     {filteredRecipes.map((recipe) => (
@@ -62,7 +71,7 @@ const [diet, setDiet] = useState("all");
     ))}
   </div>
 )}
-    </>
+    </div>
   );
 }
 
