@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+
 import RecipeCard from "../components/RecipeCard";
+
 import "../styles/SavedRecipes.css";
 
 function SavedRecipes() {
@@ -15,7 +17,7 @@ function SavedRecipes() {
     setSavedRecipes(recipes);
   }, []);
 
-  const removeRecipe = (id) => {
+  function removeRecipe(id) {
     const updatedRecipes = savedRecipes.filter(
       (recipe) => recipe.id !== id
     );
@@ -26,15 +28,20 @@ function SavedRecipes() {
       "party_menu_saved_recipes",
       JSON.stringify(updatedRecipes)
     );
-  };
+  }
 
   return (
     <div className="saved-page">
 
       <div className="saved-header">
+
         <div>
           <h1>Saved Recipes</h1>
-          <p>{savedRecipes.length} recipe(s) saved</p>
+
+          <p>
+            {savedRecipes.length} recipe
+            {savedRecipes.length !== 1 ? "s" : ""} saved
+          </p>
         </div>
 
         <Link to="/">
@@ -42,38 +49,41 @@ function SavedRecipes() {
             ← Back to Menu
           </button>
         </Link>
+
       </div>
 
       {savedRecipes.length === 0 ? (
+
         <div className="empty-state">
-          <h2>No saved recipes yet</h2>
 
-          <p>Save your favorite recipes to find them here.</p>
+          <h2>No saved recipes yet.</h2>
 
-          <Link to="/">
-            <button className="browse-btn">
-              Browse Menu
-            </button>
+          <Link
+            to="/"
+            className="browse-link"
+          >
+            Browse the menu
           </Link>
-        </div>
-      ) : (
-        <div className="saved-recipes-grid">
-          {savedRecipes.map((recipe) => (
-            <div
-              className="saved-card"
-              key={recipe.id}
-            >
-              <RecipeCard recipe={recipe} />
 
-              <button
-                className="remove-btn"
-                onClick={() => removeRecipe(recipe.id)}
-              >
-                Remove Recipe
-              </button>
-            </div>
-          ))}
         </div>
+
+      ) : (
+
+        <div className="saved-grid">
+
+          {savedRecipes.map((recipe) => (
+
+            <RecipeCard
+              key={recipe.id}
+              recipe={recipe}
+              showRemove={true}
+              onRemove={removeRecipe}
+            />
+
+          ))}
+
+        </div>
+
       )}
 
     </div>

@@ -1,107 +1,189 @@
-.details-container {
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 20px;
+.details-page{
+    max-width:1200px;
+    margin:0 auto;
+    padding:30px;
+    color:#ffffff;
 }
 
-.details-image {
-  width: 100%;
-  height: 450px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 25px;
+.details-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
 }
 
-.details-content h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
+.top-right{
+    display:flex;
+    gap:15px;
 }
 
-.details-content p {
-  font-size: 16px;
-  color: #555;
-  line-height:1.8;
-  margin-bottom: 15px;
+.top-btn{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    color:white;
+    transition:.3s;
 }
 
-.badges {
-  display: flex;
-  gap: 10px;
-  margin: 15px 0;
-}
-
-.badge {
-  padding: 6px 14px;
-  border-radius: 20px;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.veg-badge {
-  background: #16a34a;
-}
-
-.nonveg-badge {
-  background: #dc2626;
-}
-
-.category-badge {
-  background: #2563eb;
-}
-
-.ingredients {
-  margin-top: 30px;
-}
-
-.ingredients h3 {
-  margin-bottom: 10px;
-}
-
-.ingredients ul {
-  padding-left: 20px;
-  line-height: 1.8;
-}
-
-.ingredients li {
-  margin-bottom: 8px;
-}
-
-.details-buttons {
-  display: flex;
-  gap: 15px;
-  margin-top: 30px;
-}
-
-.details-buttons button {
-  
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  color: white;
-  
-  padding:14px 24px;
-    font-size:16px;
-}
-
-.save-btn {
-  background: #16a34a;
-}
-
-.back-btn {
-  background: #2563eb;
-}
-.details-content{
-    margin-top:20px;
-}
-.ingredients h3{
-    margin-bottom:15px;
-    font-size:24px;
-}
-.save-btn:hover{
-    background:#15803d;
+.back-btn{
+    background:#2563eb;
 }
 
 .back-btn:hover{
     background:#1d4ed8;
+}
+
+.saved-btn{
+    background:#2563eb;
+}
+
+.saved-btn:hover{
+    background:#1d4ed8;
+}
+
+.save-btn{
+    background:#f97316;
+}
+
+.save-btn:hover{
+    background:#ea580c;
+}
+
+.saved-active{
+    background:#16a34a;
+}
+
+.saved-active:hover{
+    background:#15803d;
+}
+
+.details-container{
+    display:grid;
+    grid-template-columns:420px 1fr;
+    gap:45px;
+    align-items:start;
+    margin-bottom:40px;
+}
+
+.details-image{
+    width:100%;
+    height:360px;
+    object-fit:cover;
+    border-radius:16px;
+}
+
+.badges{
+    display:flex;
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.badge{
+    padding:6px 14px;
+    border-radius:20px;
+    color:white;
+    font-size:13px;
+    font-weight:600;
+}
+
+.category-badge{
+    background:#2563eb;
+}
+
+.veg-badge{
+    background:#16a34a;
+}
+
+.nonveg-badge{
+    background:#dc2626;
+}
+
+.details-content h1{
+    font-size:48px;
+    color:#ffffff;
+    margin:18px 0;
+}
+
+.details-content h3{
+    color:#d1d5db;
+    font-size:22px;
+    margin-bottom:20px;
+}
+
+.details-content p{
+    color:#9ca3af;
+    line-height:1.9;
+    font-size:17px;
+}
+
+.ingredients{
+    background:#1b1d23;
+    border:1px solid #2d313c;
+    border-radius:16px;
+    padding:30px;
+}
+
+.ingredients h2{
+    color:white;
+    margin-bottom:25px;
+    font-size:32px;
+}
+
+.ingredients ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.ingredients li{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 20px;
+    margin-bottom:15px;
+    background:#111317;
+    border:1px solid #2d313c;
+    border-radius:10px;
+}
+
+.ingredients li strong{
+    color:white;
+    font-size:16px;
+}
+
+.ingredients li span{
+    color:#d1d5db;
+}
+
+@media(max-width:900px){
+
+.details-top{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
+}
+
+.top-right{
+    width:100%;
+}
+
+.top-btn{
+    flex:1;
+}
+
+.details-container{
+    grid-template-columns:1fr;
+}
+
+.details-image{
+    height:280px;
+}
+
+.details-content h1{
+    font-size:36px;
+}
+
 }

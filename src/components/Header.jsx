@@ -1,59 +1,51 @@
-import "./../styles/Header.css";
 import { Link, useNavigate } from "react-router-dom";
+import "../styles/Header.css";
 
-function Header() {
+function Header({ savedCount }) {
   const navigate = useNavigate();
 
-  const user = JSON.parse(
-    localStorage.getItem("party_menu_user")
-  );
-
-  const savedRecipes =
+  const user =
     JSON.parse(
-      localStorage.getItem("party_menu_saved_recipes")
-    ) || [];
+      localStorage.getItem("party_menu_user")
+    ) || {};
 
-  const handleLogout = () => {
+  function handleLogout() {
     localStorage.removeItem("party_menu_token");
     localStorage.removeItem("party_menu_user");
-    localStorage.removeItem("party_menu_saved_recipes");
 
-    navigate("/login");
-  };
+    navigate("/signin");
+  }
 
   return (
     <header className="header">
-      <div className="header-content">
 
-        
-         <div className="header-left">
-  <h1 className="header-title">
-    Party Menu
-  </h1>
+      <div>
 
-  <p className="welcome-text">
-    Welcome, {user?.name}
-  </p>
-</div>
-        
+        <h1>Party Menu</h1>
 
-        <div className="header-actions">
+        <p>
+          Welcome, {user.name || "Admin User"}
+        </p>
 
-          <Link to="/saved-recipes">
-            <button className="saved-btn">
-              Saved Recipes ({savedRecipes.length})
-            </button>
-          </Link>
-
-          <button
-            className="logout-btn"
-            onClick={handleLogout}
-          >
-            Logout →
-          </button>
-
-        </div>
       </div>
+
+      <div className="header-buttons">
+
+        <Link to="/saved-recipes">
+          <button className="saved-btn">
+            Saved Recipes ({savedCount})
+          </button>
+        </Link>
+
+        <button
+          className="logout-btn"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
+
+      </div>
+
     </header>
   );
 }

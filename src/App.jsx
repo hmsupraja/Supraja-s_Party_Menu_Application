@@ -1,62 +1,55 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
+import Login from "./pages/Login";
 import Home from "./pages/Home";
 import RecipeDetails from "./pages/RecipeDetails";
-import Login from "./pages/Login";
 import SavedRecipes from "./pages/SavedRecipes";
+import NotFound from "./pages/NotFound";
 
-
-function ProtectedRoute({ children }) {
-  const token = localStorage.getItem("party_menu_token");
-
-if (!token) {
-  return <Navigate to="/login" replace />;
-}
-
-  return children;
-}
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
+  const token = localStorage.getItem("party_menu_token");
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
+    <Routes>
 
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
+      <Route
+        path="/signin"
+        element={
+          token ? (
+            <Navigate to="/" replace />
+          ) : (
+            <Login />
+          )
+        }
+      />
 
-        <Route
-          path="/recipe/:id"
-          element={
-            <ProtectedRoute>
-              <RecipeDetails />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/saved-recipes"
-          element={
-            <ProtectedRoute>
-              <SavedRecipes />
-            </ProtectedRoute>
-          }
-        />
-      
-      </Routes>
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        }
+      />
 
-      
-    </BrowserRouter>
+      <Route
+        path="/menu/:id"
+        element={<RecipeDetails />}
+      />
+
+      <Route
+        path="/saved-recipes"
+        element={<SavedRecipes />}
+      />
+
+      <Route
+        path="*"
+        element={<NotFound />}
+      />
+
+    </Routes>
   );
 }
 

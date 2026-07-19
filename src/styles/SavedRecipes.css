@@ -1,82 +1,81 @@
-.saved-page {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 20px;
+.saved-page{
+    max-width:1200px;
+    margin:40px auto;
+    padding:20px;
 }
 
-.saved-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
+.saved-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
 }
 
-.saved-header h1 {
-  font-size: 36px;
-  margin-bottom: 8px;
+.saved-header h1{
+    color:#ffffff;
+    font-size:48px;
+    margin-bottom:8px;
 }
 
-.saved-header p {
-  color: #666;
+.saved-header p{
+    color:#94a3b8;
 }
 
-.saved-recipes-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
+.saved-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+    gap:30px;
 }
 
-.saved-card {
-  width: 320px;
+.back-btn{
+    padding:12px 22px;
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
 }
 
-.saved-card .recipe-card {
-  width: 100%;
+.back-btn:hover{
+    background:#1d4ed8;
 }
 
-.remove-btn {
-  width: 100%;
-  margin-top: 12px;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  background: #dc2626;
-  color: white;
-  cursor: pointer;
-  font-size: 15px;
-  transition: background 0.3s;
+.empty-state{
+    text-align:center;
+    padding:120px 20px;
 }
 
-.remove-btn:hover {
-  background: #b91c1c;
+.empty-state h2{
+    color:#ffffff;
+    margin-bottom:16px;
 }
 
-.back-btn,
-.browse-btn {
-  background: #2563eb;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 15px;
+.browse-link{
+    color:#f97316;
+    font-weight:600;
+    text-decoration:none;
 }
 
-.back-btn:hover,
-.browse-btn:hover {
-  background: #1d4ed8;
+.browse-link:hover{
+    text-decoration:underline;
 }
 
-.empty-state {
-  text-align: center;
-  padding: 80px 20px;
+@media(max-width:768px){
+
+.saved-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
 }
 
-.empty-state h2 {
-  margin-bottom: 15px;
+.saved-grid{
+    grid-template-columns:1fr;
 }
 
-.empty-state p {
-  color: #666;
-  margin-bottom: 20px;
+.back-btn{
+    width:100%;
+}
+
 }

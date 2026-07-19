@@ -1,6 +1,10 @@
 import "../styles/FilterButtons.css";
 
-function FilterButtons({ category, setCategory }) {
+function FilterButtons({
+  category,
+  setCategory,
+}) {
+
   const categories = [
     "all",
     "starter",
@@ -10,16 +14,27 @@ function FilterButtons({ category, setCategory }) {
   ];
 
   return (
-    <div className="filter-buttons">
+    <div className="filter-group">
+
       {categories.map((item) => (
+
         <button
           key={item}
-          onClick={() => setCategory(item)}
-          className={category === item ? "active" : ""}
+          className={
+            category === item
+              ? "filter-btn active"
+              : "filter-btn"
+          }
+          onClick={() =>
+            setCategory(item)
+          }
         >
-          {item.charAt(0).toUpperCase() + item.slice(1)}
+          {item.charAt(0).toUpperCase() +
+            item.slice(1)}
         </button>
+
       ))}
+
     </div>
   );
 }

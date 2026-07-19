@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+
 import recipes from "../data/recipes";
+
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import FilterButtons from "../components/FilterButtons";
@@ -9,98 +11,110 @@ import RecipeCard from "../components/RecipeCard";
 import "../styles/Home.css";
 
 function Home() {
+
   const [search, setSearch] = useState("");
+  const [searchText, setSearchText] = useState("");
   const [category, setCategory] = useState("all");
   const [diet, setDiet] = useState("all");
 
-  const filteredRecipes = recipes.filter((recipe) => {
-    const matchesSearch = recipe.name
-      .toLowerCase()
-      .includes(search.toLowerCase());
+  const filteredRecipes = useMemo(() => {
 
-    const matchesCategory =
-      category === "all" ||
-      recipe.category === category;
+    return recipes.filter((recipe) => {
 
-    const matchesDiet =
-      diet === "all" ||
-      (diet === "veg" && recipe.isVeg) ||
-      (diet === "nonveg" && !recipe.isVeg);
+      const categoryMatch =
+        category === "all" ||
+        recipe.category === category;
 
-    return (
-      matchesSearch &&
-      matchesCategory &&
-      matchesDiet
-    );
-  });
+      const dietMatch =
+        diet === "all" ||
+        (diet === "veg" && recipe.isVeg) ||
+        (diet === "nonveg" && !recipe.isVeg);
+
+      const searchMatch =
+        recipe.name
+          .toLowerCase()
+          .includes(searchText.toLowerCase());
+
+      return (
+        categoryMatch &&
+        dietMatch &&
+        searchMatch
+      );
+
+    });
+
+  }, [category, diet, searchText]);
+
+  const savedRecipes =
+    JSON.parse(
+      localStorage.getItem(
+        "party_menu_saved_recipes"
+      )
+    ) || [];
 
   return (
-    <div className="home-container">
 
-      <Header />
+    <div className="home-page">
 
-      <section className="filter-panel">
+      <Header savedCount={savedRecipes.length} />
 
-        <div className="filter-group">
-          <h4>Category</h4>
+      <div className="filter-card">
+
+        <div className="filter-section">
+
+          <h5>CATEGORY</h5>
 
           <FilterButtons
             category={category}
             setCategory={setCategory}
           />
+
         </div>
 
-        <div className="filter-group">
-          <h4>Diet</h4>
+        <div className="filter-section">
+
+          <h5>DIET</h5>
 
           <VegToggle
             diet={diet}
             setDiet={setDiet}
           />
+
         </div>
 
-        <SearchBar
-          value={search}
-          onSearch={setSearch}
-        />
+        <div className="search-section">
 
-      </section>
+          <SearchBar
+            search={search}
+            setSearch={setSearch}
+            onSearch={() => setSearchText(search)}
+          />
+
+        </div>
+
+      </div>
 
       <p className="items-count">
         {filteredRecipes.length} items found
       </p>
 
-      {filteredRecipes.length === 0 ? (
+      <div className="recipes-grid">
 
-        <div className="empty-state">
+        {filteredRecipes.map((recipe) => (
 
-          <h2>No dishes found</h2>
+          <RecipeCard
+            key={recipe.id}
+            recipe={recipe}
+          />
 
-          <p>
-            Try adjusting your search or filters.
-          </p>
+        ))}
 
-        </div>
-
-      ) : (
-
-        <div className="recipes-grid">
-
-          {filteredRecipes.map((recipe) => (
-
-            <RecipeCard
-              key={recipe.id}
-              recipe={recipe}
-            />
-
-          ))}
-
-        </div>
-
-      )}
+      </div>
 
     </div>
+
   );
+
 }
 
 export default Home;

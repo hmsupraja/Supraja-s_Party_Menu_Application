@@ -11,19 +11,14 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     setError("");
 
-    if (!email || !password) {
-      setError("");
-
-setTimeout(() => {
-  setError("Email and password are required");
-}, 10);
-
-return;
+    // Validation
+    if (!email.trim() || !password.trim()) {
+      setError("Email and password are required");
       return;
     }
 
@@ -61,7 +56,7 @@ return;
       } else {
         setError(data.message);
       }
-    } catch (err) {
+    } catch (error) {
       setError("Something went wrong. Please try again.");
     }
 
@@ -70,21 +65,24 @@ return;
 
   return (
     <div className="login-container">
+
       <div className="login-card">
 
         <div className="logo-container">
-  <img
-    src={logo}
-    alt="Party Menu Logo"
-    className="logo-image"
-  />
 
-  <h1>Party Menu</h1>
+          <img
+            src={logo}
+            alt="Party Menu Logo"
+            className="logo-image"
+          />
 
-  <p>
-    Sign in to explore our delicious menu
-  </p>
-</div>
+          <h1>Party Menu</h1>
+
+          <p>
+            Sign in to explore our delicious menu
+          </p>
+
+        </div>
 
         {error && (
           <div className="error-box">
@@ -100,9 +98,10 @@ return;
             type="email"
             placeholder="admin@example.com"
             value={email}
-            onChange={(e) =>
-              setEmail(e.target.value)
-            }
+            onChange={(event) => {
+              setEmail(event.target.value);
+              setError("");
+            }}
           />
 
           <label>Password</label>
@@ -111,9 +110,10 @@ return;
             type="password"
             placeholder="Enter your password"
             value={password}
-            onChange={(e) =>
-              setPassword(e.target.value)
-            }
+            onChange={(event) => {
+              setPassword(event.target.value);
+              setError("");
+            }}
           />
 
           <button
@@ -128,6 +128,7 @@ return;
         </form>
 
       </div>
+
     </div>
   );
 }

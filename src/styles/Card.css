@@ -1,101 +1,106 @@
-.recipe-card {
-  background: #ffffff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+.recipe-card{
+    background:#1b1d23;
+    border:1px solid #2d313c;
+    border-radius:18px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.3s;
 }
 
-.recipe-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+.recipe-card:hover{
+    border-color:#f97316;
+    transform:translateY(-3px);
 }
 
-.recipe-card img {
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
+.recipe-image{
+    position:relative;
 }
 
-.card-body {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 16px;
+.recipe-image img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    display:block;
 }
 
-.card-body small {
-  color: #f97316;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
+.diet-badge{
+    position:absolute;
+    top:14px;
+    right:14px;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:700;
+    color:#fff;
+    letter-spacing:.5px;
 }
 
-.card-body h3 {
-  color: #111827;
-  font-size: 20px;
-  margin-bottom: 10px;
+.veg{
+    background:#2e8b57;
 }
 
-.card-body p {
-  color: #6b7280;
-  font-size: 14px;
-  line-height: 1.6;
+.nonveg{
+    background:#c62828;
 }
 
-.card-body p:first-of-type {
-  min-height: 60px;
-  margin-bottom: 12px;
+.recipe-content{
+    padding:18px;
 }
 
-.card-body strong {
-  color: #374151;
-  font-size: 14px;
+.recipe-content small{
+    display:block;
+    color:#f97316;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:10px;
 }
 
-.veg,
-.nonveg {
-  display: inline-block;
-  width: fit-content;
-  padding: 5px 12px;
-  border-radius: 20px;
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 600;
-  margin: 12px 0;
+.recipe-content h3{
+    color:#ffffff;
+    .recipe-content h3{
+
+font-size:36px;
+
+font-weight:700;
+
+}
+    margin-bottom:12px;
 }
 
-.veg {
-  background: #16a34a;
+.recipe-content p{
+    color:#9ca3af;
+    line-height:1.7;
+
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+
+    line-clamp:2;
+
+    overflow:hidden;
 }
 
-.nonveg {
-  background: #dc2626;
+.servings{
+    color:#cbd5e1;
+    font-size:14px;
+}
+/* Remove Button */
+
+.remove-btn{
+    width:100%;
+    margin-top:18px;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#ef4444;
+    color:#ffffff;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
 }
 
-.card-body a {
-  margin-top: auto;
-  text-decoration: none;
-}
-
-.card-body button {
-  width: 100%;
-  padding: 12px;
-  background: #2563eb;
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.card-body button:hover {
-  background: #1d4ed8;
+.remove-btn:hover{
+    background:#dc2626;
 }

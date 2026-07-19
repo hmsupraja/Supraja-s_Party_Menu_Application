@@ -1,88 +1,77 @@
-.home-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 30px;
-  min-height: 100vh;
-  background: #f8fafc;
+.home-page{
+    max-width:1280px;
+    margin:auto;
+    padding:30px;
 }
 
-.filter-panel {
-  background: #ffffff;
-  padding: 25px;
-  border-radius: 12px;
-  margin: 30px 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+/* Filter Card */
+
+.filter-card{
+    background:#1b1d23;
+    border:1px solid #313644;
+    border-radius:20px;
+    padding:28px 30px;
+    margin:35px 0;
 }
 
-.filter-group {
-  margin-bottom: 22px;
+.filter-section{
+    margin-bottom:26px;
 }
 
-.filter-group:last-child {
-  margin-bottom: 0;
+.filter-section:last-of-type{
+    margin-bottom:22px;
 }
 
-.filter-group h4 {
-  color: #6b7280;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  letter-spacing: 0.5px;
+.filter-section h5{
+    color:#94a3b8;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:14px;
 }
 
-.items-count {
-  color: #6b7280;
-  font-size: 15px;
-  margin-bottom: 24px;
-  font-weight: 500;
+.search-section{
+    margin-top:0px;
 }
 
-.recipes-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+/* Count */
+
+.items-count{
+    color:#94a3b8;
+    font-size:17px;
+    margin-bottom:26px;
 }
 
-.empty-state {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 80px 20px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+/* Cards */
+
+.recipes-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+    gap:30px;
 }
 
-.empty-state h2 {
-  color: #1f2937;
-  font-size: 30px;
-  margin-bottom: 10px;
+/* Responsive */
+
+@media(max-width:992px){
+
+.recipes-grid{
+    grid-template-columns:repeat(2,1fr);
 }
 
-.empty-state p {
-  color: #6b7280;
-  font-size: 16px;
 }
 
-@media (max-width: 1200px) {
-  .recipes-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@media(max-width:768px){
+
+.home-page{
+    padding:20px;
 }
 
-@media (max-width: 768px) {
-  .home-container {
-    padding: 18px;
-  }
+.filter-card{
+    padding:20px;
+}
 
-  .filter-panel {
-    padding: 18px;
-  }
+.recipes-grid{
+    grid-template-columns:1fr;
+}
 
-  .recipes-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .items-count {
-    text-align: center;
-  }
 }

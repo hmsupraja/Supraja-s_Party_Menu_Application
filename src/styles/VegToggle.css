@@ -1,38 +1,25 @@
-.diet-filter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+.diet-group{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
 }
 
-.diet-filter button {
-  padding: 10px 18px;
-  background: #ffffff;
-  border: 1px solid #d1d5db;
-  border-radius: 30px;
-  color: #374151;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.diet-btn{
+    padding:11px 18px;
+    border-radius:10px;
+    background:#111214;
+    border:1px solid #374151;
+    color:#ffffff;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
 }
 
-.diet-filter button:hover {
-  border-color: #f97316;
-  color: #f97316;
+.diet-btn.active{
+    background:#f97316;
+    border-color:#f97316;
 }
 
-.diet-filter button.active {
-  background: #f97316;
-  color: #ffffff;
-  border-color: #f97316;
-}
-
-@media (max-width: 768px) {
-  .diet-filter {
-    justify-content: center;
-  }
-
-  .diet-filter button {
-    min-width: 100px;
-  }
+.diet-btn:hover{
+    border-color:#f97316;
 }
