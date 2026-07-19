@@ -1,16 +1,19 @@
-function VegToggle({ vegOnly, setVegOnly }) {
-  return (
-    <div className="veg-toggle">
-      <label>
-        <input
-          type="checkbox"
-          checked={vegOnly}
-          onChange={() => setVegOnly(!vegOnly)}
-        />
-        Veg Only
-      </label>
-    </div>
+function VegToggle({diet,setDiet})
+{
+  return(
+    <div className="diet-filter">
+      <button className={diet==="all"?'active':""} onClick={()=>setDiet('all')}>
+        All </button>
+
+        <button className={diet==='veg'?'active':''} onClick={()=>setDiet('veg')}>
+          Veg
+        </button>
+
+        <button className={diet==='nonveg'?'active':''}
+        onClick={()=>setDiet('nonveg')}>
+          Non-Veg
+        </button>
+           </div>
   );
 }
-
 export default VegToggle;

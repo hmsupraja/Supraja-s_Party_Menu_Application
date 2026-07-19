@@ -38,7 +38,13 @@ function SavedRecipes() {
       </Link>
 
       {savedRecipes.length === 0 ? (
-        <h2>No saved recipes yet</h2>
+        <div>
+  <h2>No saved recipes yet</h2>
+
+  <Link to="/">
+    <button>Browse Menu</button>
+  </Link>
+</div>
       ) : (
         <div className="recipes-grid">
           {savedRecipes.map((recipe) => (
