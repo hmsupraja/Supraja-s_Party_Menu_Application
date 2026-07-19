@@ -4,10 +4,12 @@ function Login(){
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     const [error,setError]=useState("");
+    const [loading, setLoading] = useState(false);
     const navigate=useNavigate();
     const handleSubmit = async (e) => {
   e.preventDefault();
   setError("");
+  setLoading(true);
 
   try {
     const response = await fetch(
@@ -40,26 +42,56 @@ function Login(){
       navigate("/");
     } else {
       setError(data.message);
+      setLoading(false);
     }
   } catch (error) {
+    setLoading(false);
     setError("Something went wrong. Please try again.");
   }
 };
     return (
-        <div className="login-container">
-            <h1>Party Menu Login</h1>
-            <form onSubmit={handleSubmit}>
-                <input type='email'
-                placeholder="Email"
-                value={email}
-                onChange={(e)=>setEmail(e.target.value)}
-                />
-                <input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}
-                />
-                {error && <p>{error}</p>}
-                <button type="submit">Login</button>
-            </form>
-        </div>
-    );
+  <div className="login-container">
+    <div className="login-card">
+
+      <h1 className="logo">🍽️ Party Menu</h1>
+
+      <p className="subtitle">
+        Sign in to explore our delicious menu
+      </p>
+
+      <form onSubmit={handleSubmit}>
+
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+
+        {error && (
+          <p className="error">{error}</p>
+        )}
+
+        <button
+          type="submit"
+          disabled={loading}
+        >
+          {loading ? "Signing in..." : "Sign In"}
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+);
 }
 export default Login;
