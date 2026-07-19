@@ -1,97 +1,135 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-function Login(){
-    const [email,setEmail]=useState("");
-    const [password,setPassword]=useState("");
-    const [error,setError]=useState("");
-    const [loading, setLoading] = useState(false);
-    const navigate=useNavigate();
-    const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError("");
-  setLoading(true);
+import "../styles/Login.css";
+import logo from "../assets/logo.png";
 
-  try {
-    const response = await fetch(
-      "https://serverless-api-teal.vercel.app/api/auth/signin",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      }
-    );
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    const data = await response.json();
+  const navigate = useNavigate();
 
-    if (data.success) {
-      localStorage.setItem(
-        "party_menu_token",
-        data.data.token
-      );
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      localStorage.setItem(
-        "party_menu_user",
-        JSON.stringify(data.data.user)
-      );
+    setError("");
 
-      navigate("/");
-    } else {
-      setError(data.message);
-      setLoading(false);
+    if (!email || !password) {
+      setError("");
+
+setTimeout(() => {
+  setError("Email and password are required");
+}, 10);
+
+return;
+      return;
     }
-  } catch (error) {
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(
+        "https://serverless-api-teal.vercel.app/api/auth/signin",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+        localStorage.setItem(
+          "party_menu_token",
+          data.data.token
+        );
+
+        localStorage.setItem(
+          "party_menu_user",
+          JSON.stringify(data.data.user)
+        );
+
+        navigate("/");
+      } else {
+        setError(data.message);
+      }
+    } catch (err) {
+      setError("Something went wrong. Please try again.");
+    }
+
     setLoading(false);
-    setError("Something went wrong. Please try again.");
-  }
-};
-    return (
-  <div className="login-container">
-    <div className="login-card">
+  };
 
-      <h1 className="logo">🍽️ Party Menu</h1>
+  return (
+    <div className="login-container">
+      <div className="login-card">
 
-      <p className="subtitle">
-        Sign in to explore our delicious menu
-      </p>
+        <div className="logo-container">
+  <img
+    src={logo}
+    alt="Party Menu Logo"
+    className="logo-image"
+  />
 
-      <form onSubmit={handleSubmit}>
+  <h1>Party Menu</h1>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+  <p>
+    Sign in to explore our delicious menu
+  </p>
+</div>
 
         {error && (
-          <p className="error">{error}</p>
+          <div className="error-box">
+            {error}
+          </div>
         )}
 
-        <button
-          type="submit"
-          disabled={loading}
-        >
-          {loading ? "Signing in..." : "Sign In"}
-        </button>
+        <form onSubmit={handleSubmit}>
 
-      </form>
+          <label>Email</label>
 
+          <input
+            type="email"
+            placeholder="admin@example.com"
+            value={email}
+            onChange={(e) =>
+              setEmail(e.target.value)
+            }
+          />
+
+          <label>Password</label>
+
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) =>
+              setPassword(e.target.value)
+            }
+          />
+
+          <button
+            type="submit"
+            disabled={loading}
+          >
+            {loading
+              ? "Signing in..."
+              : "Sign In"}
+          </button>
+
+        </form>
+
+      </div>
     </div>
-  </div>
-);
+  );
 }
+
 export default Login;
